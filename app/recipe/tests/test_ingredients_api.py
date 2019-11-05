@@ -50,7 +50,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.assertEqual(res.data, serializer.data)
 
     def test_ingredient_limited_to_user(self):
-        """test that only ingredients for the authenticated user are returned"""
+        """test that only ingredients for authenticated user are returned"""
         user2 = get_user_model().objects.create_user(
             'other@acculeap.com',
             'testpass'
@@ -66,7 +66,7 @@ class PrivateIngredientsApiTests(TestCase):
 
     def test_create_ingredient_successful(self):
         """test create a new ingredient"""
-        payload = {'name' : 'Cabbage'}
+        payload = {'name': 'Cabbage'}
         self.client.post(INGREDIENT_URL, payload)
 
         exists = Ingredient.objects.filter(
@@ -81,6 +81,3 @@ class PrivateIngredientsApiTests(TestCase):
         res = self.client.post(INGREDIENT_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-
