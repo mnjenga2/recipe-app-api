@@ -38,13 +38,13 @@ class PrivateTagsApiTests(TestCase):
 
     def test_retrieve_tags(self):
         """test retrieving tags"""
-        Tag.objects.create(user = self.user, name ='Vegan')
-        Tag.objects.create(user = self.user, name = 'Dessert')
+        Tag.objects.create(user=self.user, name='Vegan')
+        Tag.objects.create(user=self.user, name='Dessert')
 
         res = self.client.get(TAGS_URL)
 
         tags = Tag.objects.all().order_by('-name')
-        serializer = TagSerializer(tags, many = True)
+        serializer = TagSerializer(tags, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
@@ -54,8 +54,8 @@ class PrivateTagsApiTests(TestCase):
             'other@acculeap.com',
             'testpass'
         )
-        Tag.objects.create(user = user2, name= 'Fruity')
-        tag = Tag.objects.create(user = self.user, name = 'Comfort Food')
+        Tag.objects.create(user=user2, name='Fruity')
+        tag = Tag.objects.create(user=self.user, name='Comfort Food')
 
         res = self.client.get(TAGS_URL)
 
@@ -69,7 +69,7 @@ class PrivateTagsApiTests(TestCase):
         self.client.post(TAGS_URL, payload)
 
         exists = Tag.objects.filter(
-            user = self.user,
+            user=self.user,
             name=payload['name']
         ).exists()
         self.assertTrue(exists)
@@ -79,11 +79,6 @@ class PrivateTagsApiTests(TestCase):
         payload = {'name': ''}
         res = self.client.post(TAGS_URL, payload)
 
-        self.client.post(TAGS_URL,payload)
+        self.client.post(TAGS_URL, payload)
 
         self.assertEqual(res.status_code, status.HTTP_400_BAD_REQUEST)
-
-
-
-
-
