@@ -23,11 +23,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="3e96850b-a1a5-425f-8546-ff720e9ef08c">
-        <schema name="ifrs9" object-types="procedure, function, view, table" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="3e96850b-a1a5-425f-8546-ff720e9ef08c">
